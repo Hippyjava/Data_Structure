@@ -70,9 +70,7 @@ public class FindMiddleNode {
 	public Node findMiddleNode() {
 		if (head == null) {
 			return null;
-		} else if (head.next == null) {
-			return head;
-		}
+		} 
 
 		Node fast = head;
 		Node slow = head;

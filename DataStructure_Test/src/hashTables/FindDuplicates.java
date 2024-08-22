@@ -3,29 +3,23 @@ package hashTables;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class FindDuplicates {
 
     public static List<Integer> findDuplicates(int[] arr) {
-        HashMap<Integer, Boolean> map = new HashMap<>();
-        List<Integer> list = new ArrayList<>();
-
-        for (int i : arr) {
-            if (map.containsKey(i)) {
-                map.put(i, true);
-            } else {
-                map.put(i, false);
+        Map<Integer, Integer> numCounts = new HashMap<>();
+        for (int num : arr) {
+            numCounts.put(num, numCounts.getOrDefault(num, 0) + 1);
+        }
+        List<Integer> duplicates = new ArrayList<>();
+        for (Map.Entry<Integer, Integer> entry : numCounts.entrySet()) {
+            if (entry.getValue() > 1) {
+                duplicates.add(entry.getKey());
             }
         }
-
-        for (int i : arr) {
-            if (map.get(i) == true && !list.contains(i)) {
-                list.add(i);
-            }
-        }
-
-        return list;
+        return duplicates;
     }
 
     public static void main(String[] args) {
